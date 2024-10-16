@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+// import Head from "next/head";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,16 +23,42 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+ 
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const links = [
+    {name: "Home", href: "/"},
+    {name: "Shop", href: "/shop"},
+    {name: "About", href: "/about"},
+    {name: "Contact", href: "/contact"},
+   
+  ]
+  // const linksTwo = [
+  //   {name: "Home", href: "/"},
+  //   {name: "Shop", href: "/shop"},
+  //   {name: "About", href: "/about"},
+  //   {name: "Contact", href: "/contact"},
+   
+  // ]
   return (
     <html lang="en">
+     <head>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Style+Script&display=swap" rel="stylesheet" />
+     </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <Header />
         {children}
+        <Footer 
+        heading="Quick Links" links={links} h2="Keep in Touch" info="info@furniture.com"
+        />
+   
+    
+      
       </body>
     </html>
   );
